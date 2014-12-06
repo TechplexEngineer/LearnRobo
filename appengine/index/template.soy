@@ -26,7 +26,7 @@
 {template .start}
   {call .messages /}
   <div id="header">
-    <img id="banner" src="index/title-beta.png" height="51" width="244" alt="Blockly Games">
+    <img id="banner" src="index/learnrobo.png" height="51" width="244" alt="Blockly Games">
     <div id="subtitle">
       {msg meaning="Index.subTitle" desc="Brief description of Blockly Games."}Games for tomorrow's programmers.{/msg}
       {sp}&nbsp;
@@ -50,50 +50,56 @@
           x=80 y=60>
         <path id="path" d="M 10,15 C 15,60 35,100 50,70 S 80,20 90,85"/>
       </svg>
-      {call .appLink}
-        {param app: 'puzzle' /}
-        {param x: 10 /}
-        {param y: 15 /}
-        {param contentText}
-          {msg meaning="Games.puzzle" desc="IBID"}Puzzle{/msg}
-        {/param}
-      {/call}
+      // {call .appLink}
+      //   {param app: 'puzzle' /}
+      //   {param x: 10 /}
+      //   {param y: 15 /}
+      //   {param contentText}
+      //     {msg meaning="Games.puzzle" desc="IBID"}Puzzle{/msg}
+      //   {/param}
+      // {/call}
+
+      // x:16 y:47
       {call .appLink}
         {param app: 'maze' /}
-        {param x: 16 /}
-        {param y: 47 /}
+        {param x: 10 /}
+        {param y: 15 /}
         {param contentText}
           {msg meaning="Games.maze" desc="IBID"}Maze{/msg}
         {/param}
       {/call}
-      {call .appLink}
-        {param app: 'bird' /}
-        {param x: 29 /}
-        {param y: 75 /}
-        {param contentText}
-          {msg meaning="Games.bird" desc="IBID"}Bird{/msg}
-        {/param}
-      {/call}
+      // {call .appLink}
+      //   {param app: 'bird' /}
+      //   {param x: 29 /}
+      //   {param y: 75 /}
+      //   {param contentText}
+      //     {msg meaning="Games.bird" desc="IBID"}Bird{/msg}
+      //   {/param}
+      // {/call}
+
+      // x:49 y:72
       {call .appLink}
         {param app: 'turtle' /}
-        {param x: 49 /}
-        {param y: 72 /}
+        {param x: 29 /}
+        {param y: 75 /}
         {param contentText}
           {msg meaning="Games.turtle" desc="IBID"}Turtle{/msg}
         {/param}
       {/call}
-      {call .appLink}
-        {param app: 'movie' /}
-        {param x: 64 /}
-        {param y: 48 /}
-        {param contentText}
-          {msg meaning="Games.movie" desc="IBID"}Movie{/msg}
-        {/param}
-      {/call}
+      // {call .appLink}
+      //   {param app: 'movie' /}
+      //   {param x: 64 /}
+      //   {param y: 48 /}
+      //   {param contentText}
+      //     {msg meaning="Games.movie" desc="IBID"}Movie{/msg}
+      //   {/param}
+      // {/call}
+
+      //x:83 y:53
       {call .appLink}
         {param app: 'pond-basic' /}
-        {param x: 83 /}
-        {param y: 53 /}
+        {param x: 64 /}
+        {param y: 48 /}
         {param contentText}
           {msg meaning="Games.pondBasic" desc="IBID"}Pond{/msg}
         {/param}
@@ -133,10 +139,11 @@
     <g class="icon" id="icon-{$app}">
       <circle cx=80 cy=60 r=50 class="iconBack" />
       <image xlink:href="index/{$app}.png" height="100" width="100" x=30 y=10 />
+    //not sure what is going on here, but it breaks when not hosted on appengine
     {if $ij.html}
       <a xlink:href="{$app}.html?lang={$ij.lang}">
     {else}
-      <a xlink:href="{$app}?lang={$ij.lang}">
+      <a xlink:href="{$app}.html?lang={$ij.lang}">//blake added .html to this line
     {/if}
         <circle cx=80 cy=60 r=50 class="iconBorder" />
         <path d="M 21.11,98.89 A 55 55 0 1 1 21.11,98.89" class="gaugeFront" id="gauge-{$app}" />
