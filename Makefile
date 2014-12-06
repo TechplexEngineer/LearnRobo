@@ -23,6 +23,9 @@ index-en:
 	$(SOY_COMPILER) --outputPathFormat appengine/index/generated/en/soy.js --srcs appengine/index/template.soy
 	python build-app.py index en
 
+deploy:
+	rsync -v -r --exclude 'sources' --exclude '.svn*' --exclude 'js-read-only*' --delete appengine/* --exclude 'uncompressed.js' --exclude '*.xcf' techplex@blake.metheus.org:/var/www/team5122/labs
+
 puzzle-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/puzzle/generated/en/soy.js --srcs appengine/puzzle/template.soy
 	python build-app.py puzzle en
