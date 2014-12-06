@@ -111,9 +111,11 @@ Index.drawGauge = function(app, angle) {
   var y = yOffset - Math.sin(theta) * radius;
   var flag = angle > 180 ? 1 : 0;
   var path = document.getElementById('gauge-' + app);
+  if (path) {
   // The 'M' constants are x and y at angle zero.
-  path.setAttribute('d',
+    path.setAttribute('d',
       ['M 42.7,97.3 A', radius, radius, 0, flag, 1, x, y].join(' '));
+  }
 };
 
 /**
