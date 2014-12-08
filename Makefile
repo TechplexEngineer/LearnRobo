@@ -38,9 +38,11 @@ bird-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/bird/generated/en/soy.js --srcs appengine/bird/template.soy
 	python build-app.py bird en
 
-turtle-en: common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/turtle/generated/en/soy.js --srcs appengine/turtle/template.soy
+turtle-en: common-en soyapp-turtle
 	python build-app.py turtle en
+
+soyapp-%:
+	$(SOY_COMPILER) --outputPathFormat appengine/$(subst soyapp-,,$@)$(app)/generated/en/soy.js --srcs appengine/$(subst soyapp-,,$@)/template.soy
 
 movie-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/movie/generated/en/soy.js --srcs appengine/movie/template.soy
