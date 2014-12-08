@@ -82,6 +82,17 @@ Turtle.visible = true;
  */
 Turtle.canSubmit = false;
 
+//I did this so we can do crazy stuff to make the javascript look more like java
+Turtle._generateCode = function () {
+  if (Blockly.mainWorkspace) {
+    var code = Blockly.JavaScript.workspaceToCode();
+    code = BlocklyInterface.stripCode(code);
+    code = code.replace(/var/g,'int');
+    return code;
+  }
+  return false;
+}
+
 /**
  * Initialize Blockly and the turtle.  Called on page load.
  */
@@ -708,7 +719,8 @@ Turtle.checkAnswer = function() {
     if (BlocklyGames.LEVEL < BlocklyGames.MAX_LEVEL) {
       // No congrats for last level, it is open ended.
       Blockly.playAudio('win', 0.5);
-      BlocklyDialogs.congratulations();
+      var code = Turtle._generateCode();
+      BlocklyDialogs.congratulations(code);
     }
   } else {
     Turtle.penColour('#ff0000');
