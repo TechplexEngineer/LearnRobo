@@ -1056,6 +1056,37 @@ Maze.execute = function() {
   Maze.log = [];
   var code = Blockly.JavaScript.workspaceToCode();
   Maze.result = Maze.ResultType.UNSET;
+  var preamble =
+  "var pegman = {};"+
+  ""+
+  "pegman.moveForward = function () {"+
+  " return moveForward.apply(null, arguments);"+
+  "};"+
+  "pegman.moveBackward = function () {"+
+  " return moveBackward.apply(null, arguments);"+
+  "};"+
+  "pegman.turnLeft = function () {"+
+  " return turnLeft.apply(null, arguments);"+
+  "};"+
+  "pegman.turnRight = function () {"+
+  " return turnRight.apply(null, arguments);"+
+  "};"+
+  "pegman.isPathForward = function () {"+
+  " return isPathForward.apply(null, arguments);"+
+  "};"+
+  "pegman.isPathRight = function () {"+
+  " return isPathRight.apply(null, arguments);"+
+  "};"+
+  "pegman.isPathBackward = function () {"+
+  " return isPathBackward.apply(null, arguments);"+
+  "};"+
+  "pegman.isPathLeft = function () {"+
+  " return isPathLeft.apply(null, arguments);"+
+  "};"+
+  "pegman.notDone = function () {"+
+  " return notDone.apply(null, arguments);"+
+  "};";
+  code = preamble+code;
   var interpreter = new Interpreter(code, Maze.initInterpreter);
 
   // Try running the user's code.  There are four possible outcomes:
