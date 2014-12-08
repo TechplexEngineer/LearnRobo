@@ -57,16 +57,20 @@ Turtle.answer = function() {
       }
       break;
     case 3:
-      // Star.
-      Turtle.penColour('#ffff00');
-      drawStar(100);
+      // Ten Sides. Variable
+      var sides_3 =10;
+      for (var count = 0; count < sides_3; count++) {
+        Turtle.move(50);
+        Turtle.turn(360/sides_3);
+      }
+
       break;
     case 4:
       // Pen up/down.
       Turtle.penColour('#ffff00');
       drawStar(50);
       Turtle.penDown(false);
-      Turtle.move(150);
+      Turtle.move(100);
       Turtle.penDown(true);
       Turtle.move(20);
       break;
