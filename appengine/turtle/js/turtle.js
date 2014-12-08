@@ -421,6 +421,13 @@ Turtle.initInterpreter = function(interpreter, scope) {
   };
   interpreter.setProperty(scope, 'moveForward',
       interpreter.createNativeFunction(wrapper));
+// ----------------------------------------------------- BB Added
+  wrapper = function(x, y, id) {
+    Turtle.moveTo(x.valueOf(), y.valueOf(), id.toString());
+  };
+  interpreter.setProperty(scope, 'moveTo',
+      interpreter.createNativeFunction(wrapper));
+// ----------------------------------------------------- BB Added
   wrapper = function(distance, id) {
     Turtle.move(-distance.valueOf(), id.toString());
   };
@@ -568,6 +575,26 @@ Turtle.move = function(distance, id) {
     // WebKit (unlike Gecko) draws nothing for a zero-length line.
     var bump = 0.1;
   }
+  if (Turtle.penDownValue) {
+    Turtle.ctxScratch.lineTo(Turtle.x, Turtle.y + bump);
+    Turtle.ctxScratch.stroke();
+  }
+  Turtle.animate(id);
+};
+
+Turtle.moveTo = function(x, y, id) {
+  if (Turtle.penDownValue) {
+    Turtle.ctxScratch.beginPath();
+    Turtle.ctxScratch.moveTo(Turtle.x, Turtle.y);
+  }
+  // if (distance) {
+    Turtle.x += x;
+    Turtle.y -= y;
+    var bump = 0;
+  // } else {
+  //   // WebKit (unlike Gecko) draws nothing for a zero-length line.
+  //   var bump = 0.1;
+  // }
   if (Turtle.penDownValue) {
     Turtle.ctxScratch.lineTo(Turtle.x, Turtle.y + bump);
     Turtle.ctxScratch.stroke();

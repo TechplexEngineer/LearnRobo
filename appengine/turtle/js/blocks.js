@@ -385,3 +385,29 @@ Blockly.Blocks['turtle_repeat_internal'] = {
 
 Blockly.JavaScript['turtle_repeat_internal'] =
     Blockly.JavaScript['controls_repeat'];
+
+
+Blockly.Blocks['turtle_move_to'] = {
+  init: function() {
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField("move to");
+    this.appendValueInput("XPOS")
+        .setCheck("Number")
+        .appendField("x");
+    this.appendValueInput("YPOS")
+        .setCheck("Number")
+        .appendField("y");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+  }
+};
+
+Blockly.JavaScript['turtle_move_to'] = function(block) {
+  var value_xpos = Blockly.JavaScript.valueToCode(block, 'XPOS', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_ypos = Blockly.JavaScript.valueToCode(block, 'YPOS', Blockly.JavaScript.ORDER_ATOMIC);
+
+  return turtle_obj+'moveTo(' + value_xpos + ',' + value_ypos + ', \'block_id_' + block.id + '\');';
+};
