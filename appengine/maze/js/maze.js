@@ -1547,3 +1547,27 @@ Maze.isPath = function(direction, id) {
 Maze.notDone = function() {
   return Maze.pegmanX != Maze.finish_.x || Maze.pegmanY != Maze.finish_.y;
 };
+
+//Make it easy to select the code in the live code pre
+function SelectText(element) {
+    var doc = document;
+    var text = doc.getElementById(element);
+    var range, selection;
+
+    if (doc.body.createTextRange) {
+        range = document.body.createTextRange();
+        range.moveToElementText(text);
+        range.select();
+    } else if (window.getSelection) {
+        selection = window.getSelection();
+        range = document.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+}
+document.onclick = function(e) {
+  if (e.target.id === 'livecode' || e.target.id == 'sel_livecode') {
+    SelectText('livecode');
+  }
+};
