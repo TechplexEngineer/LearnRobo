@@ -191,10 +191,10 @@ Turtle.isCorrect = function(pixelErrors) {
     // Too many errors.
     return false;
   }
-  if ((BlocklyGames.LEVEL <= 2 &&
-       Blockly.mainWorkspace.getAllBlocks().length > 3) ||
-      (BlocklyGames.LEVEL == 3 &&
-       Blockly.mainWorkspace.getAllBlocks().length > 4)) {
+  if ((BlocklyGames.LEVEL == 1 && Blockly.mainWorkspace.getAllBlocks().length > 6) ||
+      (BlocklyGames.LEVEL == 2 && Blockly.mainWorkspace.getAllBlocks().length > 8)
+
+      ) {
     // Use a loop, dummy.
     var content = document.getElementById('helpUseLoop');
     var style = {
