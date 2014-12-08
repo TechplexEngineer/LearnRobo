@@ -362,7 +362,7 @@ BlocklyDialogs.abortOffer = function() {
  * Congratulates the user for completing the level and offers to
  * direct them to the next level, if available.
  */
-BlocklyDialogs.congratulations = function() {
+BlocklyDialogs.congratulations = function(code_in) {
   var content = document.getElementById('dialogDone');
   var style = {
     width: '40%',
@@ -374,7 +374,7 @@ BlocklyDialogs.congratulations = function() {
   if (Blockly.mainWorkspace) {
     var linesText = document.getElementById('dialogLinesText');
     linesText.textContent = '';
-    var code = Blockly.JavaScript.workspaceToCode();
+    var code = code_in||Blockly.JavaScript.workspaceToCode();
     code = BlocklyInterface.stripCode(code);
     var lineCount = code.split('\n').length;
     var pre = document.getElementById('containerCode');
@@ -385,9 +385,9 @@ BlocklyDialogs.congratulations = function() {
       pre.innerHTML = code;
     }
     if (lineCount == 1) {
-      var text = BlocklyGames.getMsg('Games_linesOfCode1');
+      var text = BlocklyGames.getMsg('Games_linesOfCode1'+(code_in?'java':''));
     } else {
-      var text = BlocklyGames.getMsg('Games_linesOfCode2').replace('%1', lineCount);
+      var text = BlocklyGames.getMsg('Games_linesOfCode2'+(code_in?'java':'')).replace('%1', lineCount);
     }
     linesText.appendChild(document.createTextNode(text));
   };
