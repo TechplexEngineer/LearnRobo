@@ -532,6 +532,48 @@ Turtle.execute = function() {
 
   Turtle.reset();
   var code = Blockly.JavaScript.workspaceToCode();
+  var preamble =
+  "var turtle = {};"+
+  "turtle.moveForward = function () {"+
+  " return moveForward.apply(null, arguments);"+
+  "};"+
+  "turtle.moveTo = function () {"+
+  " return moveTo.apply(null, arguments);"+
+  "};"+
+  "turtle.moveBackward = function () {"+
+  " return moveBackward.apply(null, arguments);"+
+  "};"+
+  "turtle.turnRight = function () {"+
+  " return turnRight.apply(null, arguments);"+
+  "};"+
+  "turtle.turnLeft = function () {"+
+  " return turnLeft.apply(null, arguments);"+
+  "};"+
+  "turtle.penUp = function () {"+
+  " return penUp.apply(null, arguments);"+
+  "};"+
+  "turtle.penDown = function () {"+
+  " return penDown.apply(null, arguments);"+
+  "};"+
+  "turtle.penWidth = function () {"+
+  " return penWidth.apply(null, arguments);"+
+  "};"+
+  "turtle.penColour = function () {"+
+  " return penColour.apply(null, arguments);"+
+  "};"+
+  "turtle.hideTurtle = function () {"+
+  " return hideTurtle.apply(null, arguments);"+
+  "};"+
+  "turtle.showTurtle = function () {"+
+  " return showTurtle.apply(null, arguments);"+
+  "};"+
+  "turtle.print = function () {"+
+  " return print.apply(null, arguments);"+
+  "};"+
+  "turtle.font = function () {"+
+  " return font.apply(null, arguments);"+
+  "};";
+  code = preamble+code;
   Turtle.interpreter = new Interpreter(code, Turtle.initInterpreter);
   Turtle.pidList.push(setTimeout(Turtle.executeChunk_, 100));
 };
