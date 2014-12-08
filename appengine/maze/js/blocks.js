@@ -29,6 +29,7 @@ goog.require('Blockly');
 goog.require('Blockly.JavaScript');
 goog.require('BlocklyGames');
 
+var pegman_obj ='pegman.';
 
 // Extensions to Blockly's language and JavaScript generator.
 
@@ -49,7 +50,7 @@ Blockly.Blocks['maze_moveForward'] = {
 
 Blockly.JavaScript['maze_moveForward'] = function(block) {
   // Generate JavaScript for moving forward.
-  return 'moveForward(\'block_id_' + block.id + '\');\n';
+  return pegman_obj+'moveForward(\'block_id_' + block.id + '\');\n';
 };
 
 Blockly.Blocks['maze_turn'] = {
@@ -76,7 +77,7 @@ Blockly.Blocks['maze_turn'] = {
 Blockly.JavaScript['maze_turn'] = function(block) {
   // Generate JavaScript for turning left or right.
   var dir = block.getFieldValue('DIR');
-  return dir + '(\'block_id_' + block.id + '\');\n';
+  return pegman_obj+dir + '(\'block_id_' + block.id + '\');\n';
 };
 
 Blockly.Blocks['maze_if'] = {
@@ -105,7 +106,7 @@ Blockly.Blocks['maze_if'] = {
 
 Blockly.JavaScript['maze_if'] = function(block) {
   // Generate JavaScript for 'if' conditional if there is a path.
-  var argument = block.getFieldValue('DIR') +
+  var argument = pegman_obj+block.getFieldValue('DIR') +
       '(\'block_id_' + block.id + '\')';
   var branch = Blockly.JavaScript.statementToCode(block, 'DO');
   var code = 'if (' + argument + ') {\n' + branch + '}\n';
@@ -140,7 +141,7 @@ Blockly.Blocks['maze_ifElse'] = {
 
 Blockly.JavaScript['maze_ifElse'] = function(block) {
   // Generate JavaScript for 'if/else' conditional if there is a path.
-  var argument = block.getFieldValue('DIR') +
+  var argument = pegman_obj+block.getFieldValue('DIR') +
       '(\'block_id_' + block.id + '\')';
   var branch0 = Blockly.JavaScript.statementToCode(block, 'DO');
   var branch1 = Blockly.JavaScript.statementToCode(block, 'ELSE');
@@ -173,5 +174,5 @@ Blockly.JavaScript['maze_forever'] = function(block) {
     branch = Blockly.JavaScript.INFINITE_LOOP_TRAP.replace(/%1/g,
         '\'block_id_' + block.id + '\'') + branch;
   }
-  return 'while (notDone()) {\n' + branch + '}\n';
+  return 'while ('+pegman_obj+'notDone()) {\n' + branch + '}\n';
 };
