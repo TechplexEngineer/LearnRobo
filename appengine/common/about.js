@@ -26,7 +26,7 @@
 (function() {
   // Change the 'Blockly Games' link when served as raw HTML files.
   // Append the language.
-  var IS_HTML = !!window.location.pathname.match(/\.html$/);
+  var IS_HTML = true; //!!window.location.pathname.match(/\.html$/);
   document.getElementById('back').href =
       (IS_HTML ? 'index.html' : '/') + location.search;
 })();
