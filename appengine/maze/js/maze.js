@@ -590,6 +590,21 @@ Maze.init = function() {
   setTimeout(BlocklyInterface.importInterpreter, 1);
   // Lazy-load the syntax-highlighting.
   setTimeout(BlocklyInterface.importPrettify, 1);
+
+  Blockly.addChangeListener(function onchange () {
+    if (Blockly.mainWorkspace) {
+      var code = Blockly.JavaScript.workspaceToCode();
+      code = BlocklyInterface.stripCode(code);
+
+      var pre = document.getElementById('livecode');
+      pre.textContent = code;
+      if (typeof prettyPrintOne == 'function') {
+        code = pre.innerHTML;
+        code = prettyPrintOne(code, 'js');
+        pre.innerHTML = code;
+      }
+    };
+  });
 };
 
 if (window.location.pathname.match(/readonly.html$/)) {
@@ -1151,7 +1166,10 @@ Maze.animate = function() {
     case 'finish':
       Maze.scheduleFinish(true);
       BlocklyInterface.saveToLocalStorage();
-      setTimeout(BlocklyDialogs.congratulations, 1000);
+      setTimeout(function(){
+        var code = Blockly.JavaScript.workspaceToCode();
+        BlocklyDialogs.congratulations(code);
+      }, 1000);
   }
 
   Maze.pidList.push(setTimeout(Maze.animate, Maze.stepSpeed * 5));

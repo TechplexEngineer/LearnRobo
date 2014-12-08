@@ -144,3 +144,27 @@ html[dir="RTL"] #pegmanButton>span {
   width: 49px;
   background-position: -980px 0px;
 }
+
+#livecode {
+  direction: ltr;
+  background-color: #eee;
+  padding: 5px;
+  margin: 0;
+  font-size: large;
+  overflow: auto;
+  max-height: 200px;
+  max-width: 380px;
+}
+
+#livecodediv {
+/*  margin-top: 15px;*/
+  width: 400px;
+}
+#livecodediv h3 {
+  /*margin-bottom: -10px;*/
+  display: inline;
+}
+#sel_livecode {
+  margin-left: 20px;
+  padding: 2px;
+}
