@@ -179,14 +179,15 @@
         {/msg}
         {sp}
         {if $ij.level < 3}
-          {msg meaning="Turtle.helpUseLoop3" desc="Dialog telling user to seek a simpler answer."}
-            Draw the shape with just three blocks.
-          {/msg}
+          Draw the shape with less blocks.
         {else}
           {msg meaning="Turtle.helpUseLoop4" desc="Dialog telling user to seek a simpler answer."}
-            Draw the star with just four blocks.
+            Draw the star with less blocks.
           {/msg}
         {/if}
+        {sp}
+        <br><br>
+        <strong>Hint</strong>: What type of block is useful for performing the same steps multiple times?
       </div>
       {call BlocklyGames.soy.ok /}
     </div>
