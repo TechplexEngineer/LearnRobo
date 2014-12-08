@@ -195,6 +195,22 @@ Turtle.init = function() {
       setTimeout(BlocklyDialogs.abortOffer, 5 * 60 * 1000);
     }
   }
+  Blockly.addChangeListener(function onchange () {
+    if (Blockly.mainWorkspace) {
+      var code = Turtle._generateCode();
+      // Blockly.JavaScript.workspaceToCode();
+      // code = BlocklyInterface.stripCode(code);
+      // code = code.replace(/var/g,'int');
+
+      var pre = document.getElementById('livecode');
+      pre.textContent = code;
+      if (typeof prettyPrintOne == 'function') {
+        code = pre.innerHTML;
+        code = prettyPrintOne(code, 'js');
+        pre.innerHTML = code;
+      }
+    };
+  });
 };
 
 if (window.location.pathname.match(/readonly.html$/)) {
@@ -750,4 +766,28 @@ Turtle.submitToReddit = function() {
 
   // Submit the form.
   document.getElementById('t2r_form').submit();
+};
+
+//Make it easy to select the code in the live code pre
+function SelectText(element) {
+    var doc = document;
+    var text = doc.getElementById(element);
+    var range, selection;
+
+    if (doc.body.createTextRange) {
+        range = document.body.createTextRange();
+        range.moveToElementText(text);
+        range.select();
+    } else if (window.getSelection) {
+        selection = window.getSelection();
+        range = document.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+}
+document.onclick = function(e) {
+  if (e.target.id === 'livecode' || e.target.id == 'sel_livecode') {
+    SelectText('livecode');
+  }
 };
