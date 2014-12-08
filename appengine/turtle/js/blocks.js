@@ -365,7 +365,9 @@ Blockly.Blocks['turtle_repeat_internal'] = {
     this.setHelpUrl(Blockly.Msg.CONTROLS_REPEAT_HELPURL);
     this.setColour(120);
     var TIMES =
-        [['3', '3'],
+        [['1', '1'],
+         ['2', '2'],
+         ['3', '3'],
          ['4', '4'],
          ['5', '5'],
          ['360', '360']];
