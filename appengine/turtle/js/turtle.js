@@ -88,6 +88,7 @@ Turtle._generateCode = function () {
     var code = Blockly.JavaScript.workspaceToCode();
     code = BlocklyInterface.stripCode(code);
     code = code.replace(/var/g,'int');
+    code = code.replace(/function/g,'void');
     return code;
   }
   return false;
@@ -191,9 +192,11 @@ Turtle.init = function() {
       !BlocklyGames.loadFromLocalStorage(BlocklyGames.NAME,
                                          BlocklyGames.LEVEL)) {
     setTimeout(Turtle.showHelp, 1000);
-    if (BlocklyGames.LEVEL == 9) {
-      setTimeout(BlocklyDialogs.abortOffer, 5 * 60 * 1000);
-    }
+
+    //Let the user skip out of this level if they have trouble
+    // if (BlocklyGames.LEVEL == 9) {
+    //   setTimeout(BlocklyDialogs.abortOffer, 5 * 60 * 1000);
+    // }
   }
   Blockly.addChangeListener(function onchange () {
     if (Blockly.mainWorkspace) {
@@ -280,7 +283,7 @@ Turtle.categoryClicked_ = false;
  * @private
  */
 Turtle.watchCategories_ = function() {
-  if (Blockly.Toolbox.flyout_.isVisible()) {
+  if (Blockly.Toolbox.flyout_ && Blockly.Toolbox.flyout_.isVisible()) {
     Turtle.categoryClicked_ = true;
     BlocklyDialogs.hideDialog(false);
   }

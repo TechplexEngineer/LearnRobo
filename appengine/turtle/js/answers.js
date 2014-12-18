@@ -40,6 +40,12 @@ Turtle.answer = function() {
       Turtle.turn(144);
     }
   }
+  function drawPoly (sides, len) {
+    for (var count = 0; count < sides; count++) {
+      Turtle.move(len);
+      Turtle.turn(360 / sides);
+    }
+  }
 
   switch (BlocklyGames.LEVEL) {
     case 1:
@@ -66,112 +72,45 @@ Turtle.answer = function() {
 
       break;
     case 4:
-      // Pen up/down.
-      Turtle.penColour('#ffff00');
-      drawStar(50);
-      Turtle.penDown(false);
-      Turtle.move(100);
-      Turtle.penDown(true);
-      Turtle.move(20);
+      //setup
+      drawPoly(10,50);
+      drawPoly(5,50);
+      drawPoly(3,50);
       break;
     case 5:
-      // Four stars.
-      Turtle.penColour('#ffff00');
-      for (var count = 0; count < 4; count++) {
-        Turtle.penDown(false);
-        Turtle.move(150);
-        Turtle.turn(90);
-        Turtle.penDown(true);
-        drawStar(50);
-      }
+      // method
+      drawPoly(10,50);
+      drawPoly(5,50);
+      drawPoly(3,50);
       break;
     case 6:
-      // Three stars and a line.
-      Turtle.penColour('#ffff00');
-      for (var count = 0; count < 3; count++) {
-        Turtle.penDown(false);
-        Turtle.move(150);
-        Turtle.turn(120);
-        Turtle.penDown(true);
-        drawStar(50);
-      }
-      Turtle.penDown(false);
-      Turtle.turn(-90);
-      Turtle.move(100);
-      Turtle.penDown(true);
-      Turtle.penColour('#ffffff');
-      Turtle.move(50);
+      // add a second parameter
+      drawPoly(4,50);
+      drawPoly(4,100);
+      drawPoly(3,100);
       break;
     case 7:
-      // Three stars and 4 lines.
-      Turtle.penColour('#ffff00');
-      for (var count = 0; count < 3; count++) {
-        Turtle.penDown(false);
-        Turtle.move(150);
-        Turtle.turn(120);
-        Turtle.penDown(true);
-        drawStar(50);
-      }
-      Turtle.penDown(false);
-      Turtle.turn(-90);
-      Turtle.move(100);
-      Turtle.penDown(true);
-      Turtle.penColour('#ffffff');
-      for (var count = 0; count < 4; count++) {
-        Turtle.move(50);
-        Turtle.move(-50);
-        Turtle.turn(45);
-      }
+      // circle
+      drawPoly(50,10);
       break;
     case 8:
-      // Three stars and a circle.
+      // Draw yellow a star
       Turtle.penColour('#ffff00');
-      for (var count = 0; count < 3; count++) {
-        Turtle.penDown(false);
-        Turtle.move(150);
-        Turtle.turn(120);
-        Turtle.penDown(true);
-        drawStar(50);
-      }
-      Turtle.penDown(false);
-      Turtle.turn(-90);
-      Turtle.move(100);
-      Turtle.penDown(true);
-      Turtle.penColour('#ffffff');
-      for (var count = 0; count < 360; count++) {
-        Turtle.move(50);
-        Turtle.move(-50);
-        Turtle.turn(1);
-      }
+      drawStar(50);
       break;
     case 9:
-      // Three stars and a crescent.
+      // Three yellow stars
       Turtle.penColour('#ffff00');
-      for (var count = 0; count < 3; count++) {
-        Turtle.penDown(false);
-        Turtle.move(150);
-        Turtle.turn(120);
-        Turtle.penDown(true);
-        drawStar(50);
-      }
+      drawStar(25);
       Turtle.penDown(false);
-      Turtle.turn(-90);
       Turtle.move(100);
       Turtle.penDown(true);
-      Turtle.penColour('#ffffff');
-      for (var count = 0; count < 360; count++) {
-        Turtle.move(50);
-        Turtle.move(-50);
-        Turtle.turn(1);
-      }
-      Turtle.turn(120);
-      Turtle.move(20);
-      Turtle.penColour('#000000');
-      for (var count = 0; count < 360; count++) {
-        Turtle.move(50);
-        Turtle.move(-50);
-        Turtle.turn(1);
-      }
+      drawStar(50);
+      Turtle.penDown(false);
+      Turtle.turn(90);
+      Turtle.move(100);
+      Turtle.penDown(true);
+      drawStar(150);
       break;
   }
 };
@@ -182,6 +121,7 @@ Turtle.answer = function() {
  * @return {boolean} True if the level is solved, false otherwise.
  */
 Turtle.isCorrect = function(pixelErrors) {
+  console.log("I changed this");
   if (BlocklyGames.LEVEL == BlocklyGames.MAX_LEVEL) {
     // Any non-null answer is correct.
     return Blockly.mainWorkspace.getAllBlocks().length > 1;
@@ -191,8 +131,10 @@ Turtle.isCorrect = function(pixelErrors) {
     // Too many errors.
     return false;
   }
-  if ((BlocklyGames.LEVEL == 1 && Blockly.mainWorkspace.getAllBlocks().length > 6) ||
-      (BlocklyGames.LEVEL == 2 && Blockly.mainWorkspace.getAllBlocks().length > 8)
+  //@blake number of blocks
+  if ((BlocklyGames.LEVEL == 1 && Blockly.mainWorkspace.getAllBlocks().length > 6)
+   || (BlocklyGames.LEVEL == 2 && Blockly.mainWorkspace.getAllBlocks().length > 8)
+   || (BlocklyGames.LEVEL == 5 && Blockly.mainWorkspace.getAllBlocks().length > 15)
 
       ) {
     // Use a loop, dummy.

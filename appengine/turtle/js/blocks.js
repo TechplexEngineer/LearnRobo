@@ -388,6 +388,10 @@ Blockly.JavaScript['turtle_repeat_internal'] =
 
 
 Blockly.Blocks['turtle_move_to'] = {
+  /**
+   * Block for moving the turtle to x,y
+   * @this Blockly.Block
+   */
   init: function() {
     this.setColour(160);
     this.appendDummyInput()

@@ -171,27 +171,30 @@
   {call BlocklyGames.soy.doneDialog /}
   {call BlocklyGames.soy.abortDialog /}
   {call BlocklyGames.soy.storageDialog /}
-  {if $ij.level < 4}
-    <div id="helpUseLoop" class="dialogHiddenContent">
-      <div style="padding-bottom: 0.7ex">
-        {msg meaning="Turtle.helpUseLoop" desc="Dialog telling user to seek a better answer."}
-          Your solution works, but you can do better.
-        {/msg}
-        {sp}
-        {if $ij.level < 3}
-          Draw the shape with less blocks.
-        {else}
-          {msg meaning="Turtle.helpUseLoop4" desc="Dialog telling user to seek a simpler answer."}
-            Draw the star with less blocks.
-          {/msg}
-        {/if}
+
+  <div id="helpUseLoop" class="dialogHiddenContent">
+    <div style="padding-bottom: 0.7ex">
+      {msg meaning="Turtle.helpUseLoop" desc="Dialog telling user to seek a better answer."}
+        Your solution works, but you can do better.
+      {/msg}
+      {sp}
+      {if $ij.level < 3}
+        Draw the shape with less blocks.
         {sp}
         <br><br>
         <strong>Hint</strong>: What type of block is useful for performing the same steps multiple times?
-      </div>
-      {call BlocklyGames.soy.ok /}
+      {/if}
+
+      {if $ij.level == 5}
+        <br><br>
+        <strong>Hint</strong>: Use a method (function) to use less blocks.
+      {/if}
+
+
     </div>
-  {/if}
+    {call BlocklyGames.soy.ok /}
+  </div>
+
 
   <div id="help" class="dialogHiddenContent">
     <div style="padding-bottom: 0.7ex">
@@ -213,40 +216,39 @@
 
       {elseif $ij.level == 4}
 
-        Change your code to draw a circle.
-
-        // <iframe style="height: 50px; width: 100%; border: none;" src="readonly.html?app=turtle&lang={$ij.lang}&xml=%3Cblock+type%3D%22turtle_pen%22+x%3D%225%22+y%3D%2210%22%3E%3C%2Fblock%3E"></iframe>
+        Change your code draw a decagon, with a pentagon inside, with a triangle inside.
+        <br>
+        <strong>Note</strong>: Each polygon has sides of length 50.
 
       {elseif $ij.level == 5}
-        {msg meaning="Turtle.helpText5" desc="Instructions."}
-          Instead of one star, can you draw four stars arranged in a square?
-        {/msg}
+
+        Change your code to draw the same picture with less blocks.
+        <br>
+        <strong>Note</strong>: Each polygon has sides of length 50.
+
       {elseif $ij.level == 6}
-        {msg meaning="Turtle.helpText6" desc="Instructions."}
-          Draw three yellow stars, and one white line.
-        {/msg}
+
+        Add another <b>parameter</b> (input) to your method called "side length" to draw two squares; one with sides of length 50, and one of side length 100. Please also draw a triangle with side length 100.
+
       {elseif $ij.level == 7}
-        {msg meaning="Turtle.helpText7" desc="Instructions."}
-          Draw the stars, then draw four white lines.
-        {/msg}
+
+       Use your method to draw a circle.
+
       {elseif $ij.level == 8}
-        {msg meaning="Turtle.helpText8" desc="Instructions."}
-          Drawing 360 white lines will look like the full moon.
-        {/msg}
+
+        Make a copy of your method, and change it to draw a star.
+        <br>
+        <b>Note</b>: You can use the "set color to" block to change the color of the drawing.
+        <iframe style="height: 50px; width: 100%; border: none;" src="readonly.html?app=turtle&lang={$ij.lang}&xml=%3Cblock+type%3D%22turtle_colour_internal%22+x%3D%225%22+y%3D%2210%22%3E%3Cfield+name%3D%22COLOUR%22%3E%23ffff00%3C%2Ffield%3E%3C%2Fblock%3E"></iframe>
+
       {elseif $ij.level == 9}
-        {msg meaning="Turtle.helpText9" desc="Instructions."}
-          Can you add a black circle so that the moon becomes a crescent?
-        {/msg}
+
+        Use your method to draw three stars with different sizes, [25, 50, 150].
+
       {elseif $ij.level == 10}
-        {msg meaning="Turtle.helpText10" desc="Instructions."}
-          Draw anything you want. You've got a huge number of new blocks you can explore. Have fun!
-        {/msg}
-        {if not $ij.html}
-          <br><br>
-          {msg meaning="Turtle.helpText10Reddit" desc="Instructions on posting your drawing to Reddit (a social website)."}
-            Use the "See Gallery" button to see what other people have drawn. If you draw something interesting, use the "Submit to Gallery" button to publish it.
-          {/msg}
-        {/if}
+
+        Make a starry night picture (lots of different sized stars).
+
       {/if}
     </div>
     {call BlocklyGames.soy.ok /}
@@ -434,8 +436,8 @@
         </block>
         <block type="math_random_float"></block>
       </category>
-      <category name="{msg meaning="Games.catVariables" desc="IBID"}Variables{/msg}" custom="VARIABLE"></category>
-      <category name="{msg meaning="Games.catProcedures" desc="IBID"}Functions{/msg}" custom="PROCEDURE"></category>
+      <category name="Variables" custom="VARIABLE"></category>
+      <category name="Methods" custom="PROCEDURE"></category>
     // {else}
     //   <category name="{msg meaning="Turtle.catTurtle" desc="category - Blocks related to Turtle commands."}Turtle{/msg}">
     //     <block type="turtle_move_internal">
