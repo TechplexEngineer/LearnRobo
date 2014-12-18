@@ -16,6 +16,10 @@ BLOCKY_DIR = $(PWD)
 # Rules
 ##############################
 
+help:
+	@echo "make deps				use svn to get dependencies"
+	@echo "make en					build the puzzles for english"
+
 all: deps languages
 
 index-en:
@@ -69,7 +73,7 @@ pond-common-en: common-en
 common-en:
 	$(SOY_COMPILER) --outputPathFormat appengine/generated/en/soy.js --srcs appengine/template.soy
 
-en: index-en puzzle-en maze-en bird-en turtle-en movie-en pond-docs-en pond-basic-en pond-advanced-en
+en: index-en puzzle-en maze-en turtle-en pond-docs-en pond-basic-en pond-advanced-en
 
 languages:
 	$(SOY_EXTRACTOR) --outputFile extracted_msgs.xlf --srcs $(ALL_TEMPLATES)
